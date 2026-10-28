@@ -3,26 +3,124 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Github Repo Size</title>
+    <title>Repo Size</title>
     <style>
+      * {
+        box-sizing: border-box;
+      }
       body {
-        width: 200px;
-        height: 300px;
-        font-family: Arial, sans-serif;
-        text-align: center;
-        border: 3px solid black;
+        width: 300px;
+        margin: 0;
+        padding: 20px;
+        color: #24292f;
+        background: #fff;
+        font:
+          14px/1.5 system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+      .mark {
+        display: grid;
+        width: 34px;
+        height: 34px;
+        place-items: center;
+        border-radius: 9px;
+        color: #fff;
+        background: #24292f;
+        font-size: 18px;
+        font-weight: 700;
+      }
+      h1 {
+        margin: 0;
+        font-size: 16px;
+        line-height: 1.2;
+      }
+      .subtitle {
+        margin: 3px 0 0;
+        color: #656d76;
+        font-size: 12px;
+      }
+      .card {
+        padding: 16px;
+        border: 1px solid #d0d7de;
+        border-radius: 10px;
+        background: #f6f8fa;
+      }
+      .label {
+        margin: 0 0 5px;
+        color: #656d76;
+        font-size: 12px;
+      }
+      #repo-name {
+        overflow-wrap: anywhere;
+        margin: 0 0 12px;
+        font-weight: 600;
+      }
+      #repo-size {
+        margin: 0;
+        font-size: 28px;
+        font-weight: 650;
+        letter-spacing: -0.04em;
+        line-height: 1.2;
+      }
+      #status {
+        min-height: 20px;
+        margin: 12px 0 0;
+        color: #656d76;
+        font-size: 12px;
+      }
+      #status.error {
+        color: #cf222e;
       }
       button {
-        margin-top: 10px;
-        padding: 5px 10px;
+        width: 100%;
+        margin-top: 14px;
+        padding: 8px 12px;
+        border: 1px solid #1f883d;
+        border-radius: 6px;
+        color: #fff;
+        background: #1f883d;
+        font: inherit;
+        font-weight: 600;
         cursor: pointer;
+      }
+      button:hover {
+        background: #1a7f37;
+      }
+      button:focus-visible {
+        outline: 3px solid #0969da55;
+        outline-offset: 2px;
+      }
+      button:disabled {
+        cursor: wait;
+        opacity: 0.7;
       }
     </style>
   </head>
   <body>
-    <h3>Hello Extension</h3>
-  <button id="clickMe">Click Me</button>
-  <p id="repo-size"></p>
-  <script src="content.js"></script>
+    <header>
+      <div class="mark" aria-hidden="true">R</div>
+      <div>
+        <h1>Repo Size</h1>
+        <p class="subtitle">GitHub repository details</p>
+      </div>
+    </header>
+    <main class="card" aria-live="polite">
+      <p class="label">Repository</p>
+      <p id="repo-name">—</p>
+      <p class="label">Repository size</p>
+      <p id="repo-size">—</p>
+      <p id="status" role="status">Open a GitHub repository to get started.</p>
+    </main>
+    <button id="refresh" type="button">Check repository</button>
+    <script src="content.js"></script>
   </body>
 </html>
